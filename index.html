@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Dossier Legal" />
+  <meta name="description" content="Dossier Legal — Abogados en Perú para extranjeros. Servicios legales: poderes notariales, compraventa, constitución de empresas, procesos judiciales, trámites y gestiones ante entidades peruanas." />
+  <meta name="keywords" content="abogados Peru extranjeros, legal services Peru, lawyers Peru foreigners, poderes notariales Peru, compraventa inmuebles Peru, constitucion empresas Peru, procesos judiciales Peru, tramites legales Peru, gestiones legales Peru, consulado Peru, poder notarial Peru, legal Peru, Dossier Legal" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Dossier Legal — Servicios Legales en Perú para Extranjeros" />
+  <meta property="og:description" content="¿Estás en el extranjero y necesitas servicios legales en Perú? Somos abogados especializados. Poderes, compraventa, empresas, procesos judiciales y más." />
+  <meta property="og:type" content="website" />
+  <title>Dossier Legal — Servicios Legales en Perú</title>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+
+  <style>
+    @font-face {
+      font-family: 'PublicSans';
+      src: url('assets/fonts/PublicSans-Regular.ttf') format('truetype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'PublicSans';
+      src: url('assets/fonts/PublicSans-Bold.ttf') format('truetype');
+      font-weight: 700;
+    }
+
+    :root {
+      --cyan:    #18bac9;
+      --blue:    #3651d4;
+      --navy:    #13123b;
+      --white:   #ffffff;
+      --gray-light: #f5f7fa;
+      --gray-mid:   #e4e8f0;
+      --gray-text:  #555e72;
+      --font: 'PublicSans', 'Segoe UI', Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--navy); background: var(--white); line-height: 1.6; font-size: 16px; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--white);
+      border-bottom: 2px solid var(--gray-mid);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 76px;
+      box-shadow: 0 2px 12px rgba(19,18,59,0.08);
+    }
+    .navbar__logo img { height: 54px; }
+    .navbar__links { display: flex; align-items: center; gap: 2rem; }
+    .navbar__links a {
+      font-weight: 700; font-size: 0.88rem; letter-spacing: 0.04em;
+      color: var(--navy); text-transform: uppercase; transition: color 0.2s;
+    }
+    .navbar__links a:hover { color: var(--cyan); }
+
+    /* Language toggle — sin banderas */
+    .lang-toggle {
+      display: flex; align-items: center; gap: 0;
+      background: var(--gray-light); border-radius: 20px;
+      padding: 4px 6px; font-size: 0.78rem; font-weight: 700;
+      border: none; cursor: default;
+    }
+    .lang-opt {
+      padding: 4px 12px; border-radius: 14px;
+      transition: background 0.2s, color 0.2s;
+      color: var(--gray-text); cursor: pointer;
+    }
+    .lang-opt.active { background: var(--navy); color: var(--white); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 3px; background: var(--navy); border-radius: 2px; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 540px;
+      color: var(--white);
+      text-align: center;
+      overflow: hidden;
+      background: #d0d0d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Tríptico de imágenes en paralelo */
+    .hero-triptych {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-panel {
+      position: absolute;
+      top: 0; bottom: 0;
+      background-size: cover;
+      background-position: center;
+      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    }
+    .hero-panel-left {
+      left: -1%; width: 39%;
+      background-image: url('assets/img/hero-izquierda.jpg');
+    }
+    .hero-panel-center {
+      left: 31%; width: 39%;
+      background-image: url('assets/img/hero-centro.jpg');
+    }
+    /* Efecto morado sobre imagen central (igual que dossierlegal.pe) */
+    .hero-panel-center::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(89, 77, 194, 0.52);
+      mix-blend-mode: multiply;
+    }
+    .hero-panel-right {
+      left: 63%; width: 40%;
+      background-image: url('assets/img/hero-derecha.jpg');
+    }
+    /* Capa oscura general para legibilidad del texto */
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: rgba(19, 18, 59, 0.32);
+      z-index: 1;
+    }
+    .hero__content { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; padding: 100px 5% 80px; }
+    .hero__eyebrow {
+      display: inline-block;
+      background: rgba(24,186,201,0.18); color: var(--cyan);
+      border: 1px solid var(--cyan); border-radius: 20px;
+      padding: 4px 16px; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem;
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.4rem; }
+    .hero h1 span { color: var(--cyan); }
+    .hero p { font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(255,255,255,0.82); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+    .hero__cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--cyan); color: var(--navy);
+      font-weight: 700; font-size: 1rem; padding: 14px 32px;
+      border-radius: 50px; transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(24,186,201,0.4);
+    }
+    .hero__cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(24,186,201,0.5); }
+
+    /* SECTIONS */
+    section { padding: 80px 5%; }
+    .section-label { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.6rem; }
+    .section-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; color: var(--navy); margin-bottom: 1rem; line-height: 1.25; }
+    .section-subtitle { font-size: 1.05rem; color: var(--gray-text); max-width: 620px; line-height: 1.7; }
+
+    /* ¿QUÉ OFRECEMOS? */
+    .ofrecemos { background: var(--gray-light); }
+    .ofrecemos__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .ofrecemos__text .section-subtitle { max-width: 500px; margin-top: 1rem; }
+    .ofrecemos__card { background: var(--white); border-radius: 16px; padding: 40px 36px; box-shadow: 0 4px 30px rgba(19,18,59,0.09); border-left: 5px solid var(--cyan); }
+    .ofrecemos__card p { font-size: 1.08rem; color: var(--gray-text); line-height: 1.8; text-align: justify; }
+    .ofrecemos__card p strong { color: var(--navy); }
+
+    /* SERVICIOS */
+    .servicios { background: var(--white); }
+    .servicios__header { text-align: center; margin-bottom: 3rem; }
+    .servicios__header .section-subtitle { margin: 0.8rem auto 0; }
+    .servicios__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1100px; margin: 0 auto; }
+    .servicio-card {
+      background: var(--white); border: 1.5px solid var(--gray-mid);
+      border-radius: 16px; padding: 32px 28px;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .servicio-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+    }
+    .servicio-card:hover { box-shadow: 0 12px 40px rgba(19,18,59,0.12); transform: translateY(-4px); border-color: transparent; }
+    .servicio-card__icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .servicio-card__icon svg { width: 26px; height: 26px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .servicio-card h3 { font-size: 1.08rem; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; }
+    .servicio-card p { font-size: 0.93rem; color: var(--gray-text); line-height: 1.7; text-align: justify; }
+    .servicios__cta { text-align: center; margin-top: 3rem; }
+    .btn-outline { display: inline-block; border: 2px solid var(--navy); color: var(--navy); font-weight: 700; padding: 13px 32px; border-radius: 50px; font-size: 0.95rem; transition: background 0.2s, color 0.2s; }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+
+    /* CONTACTO */
+    .contacto { background: var(--gray-light); }
+    .contacto__inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: stretch; }
+    .contacto__info h2 { margin-bottom: 1.5rem; }
+    .contacto__item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.4rem; }
+    .contacto__item-icon { width: 44px; height: 44px; min-width: 44px; background: var(--navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .contacto__item-text span { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-text); font-weight: 700; margin-bottom: 2px; }
+    .contacto__item-text a, .contacto__item-text p { font-size: 1rem; color: var(--navy); font-weight: 600; }
+    .contacto__item-text a:hover { color: var(--cyan); }
+
+    /* Libro de reclamaciones — sin texto, solo imagen al tamaño natural */
+    .reclamaciones-widget {
+      display: inline-flex; align-items: center;
+      background: var(--white); border: 2px solid var(--gray-mid);
+      border-radius: 14px; padding: 12px 16px; margin-top: 2rem;
+      cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; text-decoration: none;
+    }
+    .reclamaciones-widget:hover { border-color: var(--cyan); box-shadow: 0 4px 18px rgba(24,186,201,0.15); }
+    .reclamaciones-widget img { height: 50px; width: auto; }
+
+    .contacto__visual {
+      background: linear-gradient(135deg, var(--navy), #2a1f6e);
+      border-radius: 20px; padding: 40px 36px;
+      color: var(--white); display: flex; flex-direction: column; justify-content: center;
+    }
+    .contacto__visual h3 { font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--cyan); }
+    .contacto__visual p { font-size: 0.95rem; color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 1.4rem; text-align: justify; }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25d366; color: var(--white); font-weight: 700;
+      padding: 13px 26px; border-radius: 50px; font-size: 0.95rem;
+      transition: opacity 0.2s; margin-top: 0.5rem; width: fit-content;
+    }
+    .wa-btn:hover { opacity: 0.9; }
+    .wa-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 40px 5% 28px; }
+    .footer__inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer__logo img { height: 34px; }
+    .footer__links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer__links a { font-size: 0.85rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer__links a:hover { color: var(--cyan); }
+    .footer__copy { font-size: 0.8rem; text-align: center; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.1); max-width: 1100px; margin-left: auto; margin-right: auto; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(19,18,59,0.65); z-index: 9000; align-items: flex-start; justify-content: center; padding: 30px 16px; overflow-y: auto; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--white); border-radius: 20px; max-width: 720px; width: 100%; padding: 40px 40px 48px; position: relative; margin: auto; }
+    .modal__close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--navy); line-height: 1; }
+    .modal__header { display: flex; align-items: center; gap: 16px; margin-bottom: 2rem; padding-bottom: 1.2rem; border-bottom: 2px solid var(--gray-mid); }
+    .modal__header img { height: 52px; }
+    .modal__header div h2 { font-size: 1.2rem; color: var(--navy); }
+    .modal__header div p { font-size: 0.82rem; color: var(--gray-text); }
+    .form-section-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); background: var(--gray-light); padding: 10px 14px; border-radius: 8px; margin: 1.8rem 0 1rem; border-left: 4px solid var(--cyan); }
+    .form-subtitle { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-text); margin: 1.2rem 0 0.7rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+    .form-group label { font-size: 0.83rem; font-weight: 700; color: var(--navy); }
+    .form-group input, .form-group select, .form-group textarea { border: 1.5px solid var(--gray-mid); border-radius: 9px; padding: 10px 13px; font-family: var(--font); font-size: 0.9rem; color: var(--navy); background: var(--white); transition: border-color 0.2s; outline: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--cyan); }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .radio-group { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+    .radio-group label { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; cursor: pointer; }
+    .tipo-bien-group { display: flex; gap: 1rem; margin-bottom: 14px; }
+    .tipo-bien-btn { flex: 1; border: 2px solid var(--gray-mid); border-radius: 10px; padding: 12px; text-align: center; cursor: pointer; font-weight: 700; font-size: 0.9rem; color: var(--navy); transition: border-color 0.2s, background 0.2s; }
+    .tipo-bien-btn.selected { border-color: var(--cyan); background: rgba(24,186,201,0.08); }
+    .tipo-reclamo-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 0.88rem; }
+    .tipo-reclamo-table th { background: var(--gray-light); padding: 10px 12px; text-align: left; font-weight: 700; color: var(--navy); border: 1px solid var(--gray-mid); }
+    .tipo-reclamo-table td { padding: 10px 12px; border: 1px solid var(--gray-mid); color: var(--gray-text); vertical-align: top; }
+    .tipo-reclamo-table td label { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
+    .form-note { font-size: 0.8rem; color: var(--gray-text); background: #fffbea; border: 1px solid #f0e08a; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; line-height: 1.5; }
+    .btn-submit { display: block; width: 100%; background: linear-gradient(135deg, var(--cyan), var(--blue)); color: var(--white); font-weight: 700; font-size: 1rem; border: none; border-radius: 50px; padding: 15px; cursor: pointer; margin-top: 1.5rem; transition: opacity 0.2s; font-family: var(--font); }
+    .btn-submit:hover { opacity: 0.9; }
+    .hidden { display: none !important; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .servicios__grid { grid-template-columns: repeat(2, 1fr); }
+      .ofrecemos__grid { grid-template-columns: 1fr; gap: 36px; }
+      .contacto__inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 650px) {
+      .servicios__grid { grid-template-columns: 1fr; }
+      .navbar__links { display: none; flex-direction: column; position: absolute; top: 76px; left: 0; width: 100%; background: var(--white); padding: 20px 5%; border-top: 1px solid var(--gray-mid); box-shadow: 0 8px 20px rgba(0,0,0,0.08); gap: 1rem; }
+      .navbar__links.open { display: flex; }
+      .hamburger { display: flex; }
+      .form-row { grid-template-columns: 1fr; }
+      .modal { padding: 28px 20px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="navbar__logo">
+      <img src="assets/img/logo.png" alt="Dossier Legal" />
+    </a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="#ofrecemos" data-es="¿Qué ofrecemos?" data-en="What we offer">¿Qué ofrecemos?</a></li>
+      <li><a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a></li>
+      <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div class="lang-toggle">
+        <span class="lang-opt" id="langEN" onclick="setLang('en')">ENG</span>
+        <span class="lang-opt active" id="langES" onclick="setLang('es')">ESP</span>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <!-- Tríptico de imágenes -->
+    <div class="hero-triptych">
+      <div class="hero-panel hero-panel-left"></div>
+      <div class="hero-panel hero-panel-center"></div>
+      <div class="hero-panel hero-panel-right"></div>
+    </div>
+    <!-- Capa oscura para legibilidad -->
+    <div class="hero-overlay"></div>
+    <div class="hero__content">
+      <span class="hero__eyebrow" data-es="Lima, Perú · Servicios Legales" data-en="Lima, Peru · Legal Services">Lima, Perú · Servicios Legales</span>
+      <h1 data-es="¿Necesitas servicios legales en <span>Perú</span> desde el extranjero?" data-en="Need legal services in <span>Peru</span> from abroad?">
+        ¿Necesitas servicios legales en <span>Perú</span> desde el extranjero?
+      </h1>
+      <p data-es="Somos abogados dedicados a la asistencia de personas que se encuentran fuera del país. Nos encargamos de todas las acciones legales que requieras." data-en="We are lawyers dedicated to assisting people located outside Peru. We handle all the legal actions you need.">
+        Somos abogados dedicados a la asistencia de personas que se encuentran fuera del país. Nos encargamos de todas las acciones legales que requieras.
+      </p>
+      <a href="#contacto" class="hero__cta" data-es="Conversemos" data-en="Let's talk">Conversemos</a>
+    </div>
+  </section>
+
+  <!-- ¿QUÉ OFRECEMOS? -->
+  <section class="ofrecemos" id="ofrecemos">
+    <div class="ofrecemos__grid">
+      <div class="ofrecemos__text">
+        <span class="section-label" data-es="Nuestra propuesta" data-en="Our value">Nuestra propuesta</span>
+        <h2 class="section-title" data-es="¿Qué ofrecemos?" data-en="What do we offer?">¿Qué ofrecemos?</h2>
+        <p class="section-subtitle" data-es="Te encuentras en el extranjero y necesitas realizar alguna gestión en Perú, pierde cuidado, nos encargamos de realizar en el país las acciones que correspondan realizarse." data-en="You are abroad and need to carry out a process in Peru — don't worry, we take care of carrying out in the country the actions that need to be done.">
+          Te encuentras en el extranjero y necesitas realizar alguna gestión en Perú, pierde cuidado, nos encargamos de realizar en el país las acciones que correspondan realizarse.
+        </p>
+      </div>
+      <div class="ofrecemos__card">
+        <p data-es="Desde cualquier parte del mundo, puedes contar con nuestro equipo para <strong>gestionar poderes notariales, tramitar compraventas, constituir empresas, iniciar procesos judiciales o arbitrales, y realizar cualquier procedimiento ante entidades públicas o privadas</strong> en el Perú, sin necesidad de que estés físicamente en el país." data-en="From anywhere in the world, you can count on our team to <strong>manage notarial powers of attorney, process real estate transactions, incorporate companies, initiate judicial or arbitral proceedings, and carry out any procedure before public or private entities</strong> in Peru — without needing to be physically present.">
+          Desde cualquier parte del mundo, puedes contar con nuestro equipo para <strong>gestionar poderes notariales, tramitar compraventas, constituir empresas, iniciar procesos judiciales o arbitrales, y realizar cualquier procedimiento ante entidades públicas o privadas</strong> en el Perú, sin necesidad de que estés físicamente en el país.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="servicios__header">
+      <span class="section-label" data-es="Lo que hacemos" data-en="What we do">Lo que hacemos</span>
+      <h2 class="section-title" data-es="Nuestros Servicios" data-en="Our Services">Nuestros Servicios</h2>
+      <p class="section-subtitle" data-es="Soluciones legales integrales diseñadas para quienes viven fuera de Perú y necesitan actuar dentro del país." data-en="Comprehensive legal solutions designed for those living outside Peru who need to act within the country.">
+        Soluciones legales integrales diseñadas para quienes viven fuera de Perú y necesitan actuar dentro del país.
+      </p>
+    </div>
+    <div class="servicios__grid">
+
+      <div class="servicio-card">
+        <div class="servicio-card__icon">
+          <!-- Icono: documento con sello (poderes) -->
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3 data-es="Poderes" data-en="Powers of Attorney">Poderes</h3>
+        <p data-es="¿Buscas vender, comprar, arrendar o disponer de un inmueble; constituir una empresa; o actuar ante entidades públicas o privadas? Te asesoramos en la elaboración de poderes en favor de una persona de confianza o de nosotros para llevar adelante el acto que necesites." data-en="Looking to sell, buy, lease or dispose of a property; incorporate a company; or act before public or private entities? We advise you on drafting powers of attorney in favor of a trusted person or ourselves to carry out the act you need.">
+          ¿Buscas vender, comprar, arrendar o disponer de un inmueble; constituir una empresa; o actuar ante entidades públicas o privadas? Te asesoramos en la elaboración de poderes en favor de una persona de confianza o de nosotros para llevar adelante el acto que necesites.
+        </p>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-card__icon">
+          <!-- Icono: moneda/cobranza -->
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M9.5 9.5a2.5 2.5 0 0 1 5 0c0 2-5 3-5 5a2.5 2.5 0 0 0 5 0"/></svg>
+        </div>
+        <h3 data-es="Cobranza Extrajudicial y Judicial" data-en="Debt Collection">Cobranza Extrajudicial y Judicial</h3>
+        <p data-es="Ante una deuda de persona natural o empresa, buscamos información pública sobre su patrimonio e implementamos la estrategia de cobranza más adecuada: requerimientos notariales, conciliación, transacciones extrajudiciales, procesos concursales o demanda judicial." data-en="Facing a debt from an individual or company, we search for public information on their assets and implement the most suitable collection strategy: notarial demands, conciliation, out-of-court settlements, insolvency proceedings, or judicial claims.">
+          Ante una deuda de persona natural o empresa, buscamos información pública sobre su patrimonio e implementamos la estrategia de cobranza más adecuada: requerimientos notariales, conciliación, transacciones extrajudiciales, procesos concursales o demanda judicial.
+        </p>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-card__icon">
+          <!-- Icono: edificio/empresa -->
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3 data-es="Constitución de Empresas" data-en="Company Formation">Constitución de Empresas</h3>
+        <p data-es="¿Interesado en invertir o desarrollar actividades empresariales en el Perú? Te asesoramos en la constitución de personas jurídicas y la designación de sus primeros representantes en el país." data-en="Interested in investing or developing business activities in Peru? We advise you on incorporating legal entities and designating their first representatives in the country.">
+          ¿Interesado en invertir o desarrollar actividades empresariales en el Perú? Te asesoramos en la constitución de personas jurídicas y la designación de sus primeros representantes en el país.
+        </p>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-card__icon">
+          <!-- Icono: balanza/justicia -->
+          <svg viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 21h14"/><path d="M3 6l9-3 9 3"/><path d="M3 6l3 6c0 1.657-1.343 3-3 3s-3-1.343-3-3l3-6z"/><path d="M21 6l3 6c0 1.657-1.343 3-3 3s-3-1.343-3-3l3-6z"/></svg>
+        </div>
+        <h3 data-es="Procesos Judiciales y Arbitrales" data-en="Judicial &amp; Arbitral Proceedings">Procesos Judiciales y Arbitrales</h3>
+        <p data-es="¿Tienes alguna controversia de naturaleza civil, penal, laboral u otra que puede escalar? Prestamos patrocinio legal en el resguardo de tus derechos ante los tribunales y árbitros del Perú." data-en="Do you have a dispute of a civil, criminal, labor or other nature that may escalate? We provide legal representation to protect your rights before Peruvian courts and arbitrators.">
+          ¿Tienes alguna controversia de naturaleza civil, penal, laboral u otra que puede escalar? Prestamos patrocinio legal en el resguardo de tus derechos ante los tribunales y árbitros del Perú.
+        </p>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-card__icon">
+          <!-- Icono: casa/inmueble -->
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><rect x="9" y="14" width="6" height="8"/></svg>
+        </div>
+        <h3 data-es="Compraventa" data-en="Real Estate Transactions">Compraventa</h3>
+        <p data-es="¿Tienes un inmueble (casa, departamento, terreno u otro) o eres copropietario de uno y estás interesado en venderlo o disponer del mismo? Te asesoramos en el saneamiento y en la disposición del activo." data-en="Do you own a property (house, apartment, land or other) or are you a co-owner and interested in selling or disposing of it? We advise you on the regularization and disposal of the asset.">
+          ¿Tienes un inmueble (casa, departamento, terreno u otro) o eres copropietario de uno y estás interesado en venderlo o disponer del mismo? Te asesoramos en el saneamiento y en la disposición del activo.
+        </p>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-card__icon">
+          <!-- Icono: carpeta/trámites -->
+          <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+        </div>
+        <h3 data-es="Procedimientos Administrativos" data-en="Administrative Procedures">Procedimientos Administrativos</h3>
+        <p data-es="¿Necesitas asegurar una marca, solicitar una licencia, regularizar impuestos o gestionar cualquier trámite ante entidades de la Administración Pública? Nos encargamos de ello en tu representación." data-en="Need to secure a trademark, apply for a license, regularize taxes or handle any procedure before government entities? We take care of it on your behalf.">
+          ¿Necesitas asegurar una marca, solicitar una licencia, regularizar impuestos o gestionar cualquier trámite ante entidades de la Administración Pública? Nos encargamos de ello en tu representación.
+        </p>
+      </div>
+
+    </div>
+    <div class="servicios__cta">
+      <a href="#contacto" class="btn-outline" data-es="¿Necesitas un servicio más específico? Conversemos →" data-en="Need a more specific service? Let's talk →">¿Necesitas un servicio más específico? Conversemos →</a>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="contacto__inner">
+      <div class="contacto__info">
+        <span class="section-label" data-es="Estamos aquí para ayudarte" data-en="We are here to help">Estamos aquí para ayudarte</span>
+        <h2 class="section-title" data-es="Contáctanos" data-en="Contact Us">Contáctanos</h2>
+
+        <div class="contacto__item">
+          <div class="contacto__item-icon">📍</div>
+          <div class="contacto__item-text">
+            <span data-es="Ubicación" data-en="Location">Ubicación</span>
+            <p>Lima, Perú</p>
+          </div>
+        </div>
+        <div class="contacto__item">
+          <div class="contacto__item-icon">✉️</div>
+          <div class="contacto__item-text">
+            <span data-es="Correo electrónico" data-en="Email">Correo electrónico</span>
+            <a href="mailto:soporte@dossierlegal.pe">soporte@dossierlegal.pe</a>
+          </div>
+        </div>
+        <div class="contacto__item">
+          <div class="contacto__item-icon">🇵🇪</div>
+          <div class="contacto__item-text">
+            <span>WhatsApp</span>
+            <a href="https://wa.me/51992831546" target="_blank">+51 992 831 546</a>
+          </div>
+        </div>
+
+        <!-- Libro de Reclamaciones: solo imagen, sin texto adicional -->
+        <a href="#" class="reclamaciones-widget" onclick="openModal(event)">
+          <img src="https://dossierlegal.pe/static/assets/images/widget/claim_book_title.png" alt="Libro de Reclamaciones Virtual" />
+        </a>
+      </div>
+
+      <div class="contacto__visual">
+        <h3 data-es="¿Listo para comenzar?" data-en="Ready to get started?">¿Listo para comenzar?</h3>
+        <p data-es="Reserva una cita y cuéntanos qué necesitas gestionar en Perú. Estamos disponibles para clientes en cualquier parte del mundo." data-en="Book an appointment and tell us what you need to manage in Peru. We are available to clients anywhere in the world.">
+          Reserva una cita y cuéntanos qué necesitas gestionar en Perú. Estamos disponibles para clientes en cualquier parte del mundo.
+        </p>
+        <a href="https://wa.me/51992831546" target="_blank" class="wa-btn">
+          <!-- Logo oficial WhatsApp SVG -->
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+            <path d="M16 3C8.82 3 3 8.82 3 16c0 2.3.61 4.47 1.68 6.35L3 29l6.82-1.64A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.85a10.83 10.83 0 0 1-5.54-1.52l-.4-.23-4.05.97.99-3.94-.26-.41A10.85 10.85 0 1 1 16 26.85zm5.96-8.12c-.33-.16-1.93-.95-2.23-1.06-.3-.11-.51-.16-.72.16s-.83 1.06-1.01 1.28-.37.24-.7.08c-1.93-.96-3.2-1.72-4.48-3.9-.34-.58.34-.54.97-1.8.11-.22.05-.41-.03-.57-.08-.16-.72-1.74-1-2.39-.26-.62-.53-.54-.72-.55h-.62c-.22 0-.57.08-.86.41-.3.33-1.13 1.1-1.13 2.69s1.16 3.12 1.32 3.34c.16.22 2.27 3.47 5.5 4.87.77.33 1.37.53 1.84.68.77.24 1.47.21 2.03.13.62-.09 1.93-.79 2.2-1.55.27-.76.27-1.42.19-1.55-.08-.14-.3-.22-.63-.38z"/>
+          </svg>
+          <span data-es="WhatsApp" data-en="WhatsApp">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__logo">
+        <img src="assets/img/logo-blanco.png" alt="Dossier Legal" />
+      </div>
+      <ul class="footer__links">
+        <li><a href="#ofrecemos" data-es="¿Qué ofrecemos?" data-en="What we offer">¿Qué ofrecemos?</a></li>
+        <li><a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a></li>
+        <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
+        <li><a href="#" onclick="openModal(event)" data-es="Libro de Reclamaciones" data-en="Complaints Book">Libro de Reclamaciones</a></li>
+      </ul>
+    </div>
+    <p class="footer__copy" data-es="© 2026 Dossier Legal. Todos los derechos reservados. Lima, Perú." data-en="© 2026 Dossier Legal. All rights reserved. Lima, Peru.">
+      © 2026 Dossier Legal. Todos los derechos reservados. Lima, Perú.
+    </p>
+  </footer>
+
+  <!-- MODAL: LIBRO DE RECLAMACIONES -->
+  <div class="modal-overlay" id="modalReclamos">
+    <div class="modal">
+      <button class="modal__close" onclick="closeModal()">✕</button>
+      <div class="modal__header">
+        <img src="https://dossierlegal.pe/static/assets/images/widget/claim_book_title.png" alt="Libro de Reclamaciones" />
+        <div>
+          <h2 data-es="Libro de Reclamaciones Virtual" data-en="Virtual Complaints Book">Libro de Reclamaciones Virtual</h2>
+          <p>Mario Flores Rivera – RUC 10436599281</p>
+        </div>
+      </div>
+
+      <form id="reclamosForm" onsubmit="submitReclamo(event)">
+        <div class="form-section-title" data-es="1. IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE" data-en="1. COMPLAINANT CONSUMER IDENTIFICATION">1. IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE</div>
+
+        <div class="form-subtitle" data-es="DATOS PERSONALES" data-en="PERSONAL DATA">DATOS PERSONALES</div>
+        <div class="radio-group">
+          <span data-es="¿Es menor de edad?" data-en="Is the claimant a minor?">¿Es menor de edad?</span>
+          <label><input type="radio" name="menor" value="si" onchange="toggleMenor(this)"> <span data-es="Sí" data-en="Yes">Sí</span></label>
+          <label><input type="radio" name="menor" value="no" checked onchange="toggleMenor(this)"> <span data-es="No" data-en="No">No</span></label>
+        </div>
+
+        <div class="form-subtitle" data-es="DEL SOLICITANTE" data-en="CLAIMANT">DEL SOLICITANTE</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-es="Tipo de documento" data-en="Document type">Tipo de documento</label>
+            <select name="tipo_doc">
+              <option value="">---------</option>
+              <option value="CE">CE</option>
+              <option value="DNI">DNI</option>
+              <option value="Pasaporte">Pasaporte</option>
+              <option value="Otros">Otros</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-es="Número de documento" data-en="Document number">Número de documento</label>
+            <input type="text" name="num_doc" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-es="Nombres y Apellidos" data-en="Full name">Nombres y Apellidos</label>
+          <input type="text" name="nombre" />
+        </div>
+
+        <div class="radio-group">
+          <span data-es="¿Representa a una empresa?" data-en="Representing a company?">¿Representa a una empresa?</span>
+          <label><input type="radio" name="empresa" value="si" onchange="toggleEmpresa(this)"> <span data-es="Sí" data-en="Yes">Sí</span></label>
+          <label><input type="radio" name="empresa" value="no" checked onchange="toggleEmpresa(this)"> <span data-es="No" data-en="No">No</span></label>
+        </div>
+        <div id="empresaFields" class="hidden">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Razón social *</label>
+              <input type="text" name="razon_social" />
+            </div>
+            <div class="form-group">
+              <label data-es="Tipo de documento empresa" data-en="Company doc type">Tipo de documento *</label>
+              <select name="tipo_doc_empresa"><option value="">---------</option><option value="RUC">RUC</option></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Número *</label>
+            <input type="text" name="num_doc_empresa" />
+          </div>
+        </div>
+
+        <div id="apoderadoFields" class="hidden">
+          <div class="form-subtitle" data-es="DEL APODERADO (madre, padre o representante)" data-en="LEGAL GUARDIAN">DEL APODERADO</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label data-es="Tipo de documento del apoderado" data-en="Guardian doc type">Tipo de documento *</label>
+              <select name="tipo_doc_apoderado"><option value="">---------</option><option value="CE">CE</option><option value="DNI">DNI</option><option value="Otros">Otros</option></select>
+            </div>
+            <div class="form-group">
+              <label data-es="Número de documento del apoderado" data-en="Guardian doc number">Número *</label>
+              <input type="text" name="num_doc_apoderado" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-es="Nombres y Apellidos del apoderado" data-en="Guardian full name">Nombres y Apellidos *</label>
+            <input type="text" name="nombre_apoderado" />
+          </div>
+        </div>
+
+        <div class="form-subtitle" data-es="DATOS DE CONTACTO" data-en="CONTACT DATA">DATOS DE CONTACTO</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" name="email" id="emailReclamante" />
+          </div>
+          <div class="form-group">
+            <label data-es="Teléfono / Celular" data-en="Phone / Mobile">Teléfono / Celular</label>
+            <input type="text" name="telefono" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-es="Domicilio (dirección actual)" data-en="Address">Domicilio</label>
+          <input type="text" name="domicilio" />
+        </div>
+        <div class="radio-group">
+          <span data-es="¿Dónde le enviamos la respuesta?" data-en="Send response by:">¿Dónde le enviamos la respuesta?</span>
+          <label><input type="radio" name="respuesta" value="email" checked> E-mail</label>
+          <label><input type="radio" name="respuesta" value="carta"> <span data-es="Carta en su dirección" data-en="Letter">Carta</span></label>
+        </div>
+        <p class="form-note" data-es="En caso haya solicitado su respuesta por E-mail, recomendamos revisar su bandeja de entrada así como también la carpeta de Spam." data-en="If you requested a response by email, please check your inbox and Spam folder.">
+          En caso haya solicitado su respuesta por E-mail, recomendamos revisar su bandeja de entrada así como también la carpeta de Spam.
+        </p>
+
+        <div class="form-section-title" data-es="2. IDENTIFICACIÓN DEL BIEN CONTRATADO" data-en="2. CONTRACTED GOOD / SERVICE">2. IDENTIFICACIÓN DEL BIEN CONTRATADO</div>
+        <div style="margin-bottom:14px;">
+          <label style="font-size:.83rem;font-weight:700;color:var(--navy);display:block;margin-bottom:8px;" data-es="Tipo de bien:" data-en="Type:">Tipo de bien:</label>
+          <div class="tipo-bien-group">
+            <div class="tipo-bien-btn selected" onclick="selectTipoBien(this,'Producto')" data-es="Producto" data-en="Product">Producto</div>
+            <div class="tipo-bien-btn" onclick="selectTipoBien(this,'Servicio')" data-es="Servicio" data-en="Service">Servicio</div>
+          </div>
+          <input type="hidden" name="tipo_bien" id="tipoBienInput" value="Producto" />
+        </div>
+        <div class="form-group">
+          <label data-es="Monto de Reclamo (S/)" data-en="Claim Amount (S/)">Monto de Reclamo (S/)</label>
+          <input type="number" name="monto" step="0.01" min="0" />
+        </div>
+        <div class="form-group">
+          <label data-es="Descripción" data-en="Description">Descripción</label>
+          <textarea name="descripcion_bien"></textarea>
+        </div>
+
+        <div class="form-section-title" data-es="3. DETALLES DEL RECLAMO, QUEJA O SOLICITUD" data-en="3. COMPLAINT DETAILS">3. DETALLES DEL RECLAMO, QUEJA O SOLICITUD</div>
+        <table class="tipo-reclamo-table">
+          <thead><tr><th data-es="Opción" data-en="Option">Opción</th><th data-es="Descripción" data-en="Description">Descripción</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><label><input type="radio" name="tipo_reclamo" value="Reclamo" checked /><strong data-es="Reclamo" data-en="Complaint">Reclamo</strong></label></td>
+              <td data-es="Disconformidad relacionada a los productos o servicios." data-en="Dissatisfaction related to products or services.">Disconformidad relacionada a los productos o servicios.</td>
+            </tr>
+            <tr>
+              <td><label><input type="radio" name="tipo_reclamo" value="Queja" /><strong data-es="Queja" data-en="Grievance">Queja</strong></label></td>
+              <td data-es="Disconformidad no relacionada a los productos o servicios; o malestar respecto a la atención al público." data-en="Dissatisfaction unrelated to products or services; or discontent regarding customer service.">Disconformidad no relacionada a los productos o servicios; o malestar respecto a la atención al público.</td>
+            </tr>
+            <tr>
+              <td><label><input type="radio" name="tipo_reclamo" value="Derechos ARCO" /><strong data-es="Derechos ARCO" data-en="ARCO Rights">Derechos ARCO</strong></label></td>
+              <td data-es="Solicitud de acceso, rectificación, cancelación, oposición o información." data-en="Request for access, rectification, cancellation, opposition or information.">Solicitud de acceso, rectificación, cancelación, oposición o información.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="form-group">
+          <label data-es="Detalle" data-en="Details">Detalle</label>
+          <textarea name="detalle" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label data-es="Pedido" data-en="Request">Pedido</label>
+          <textarea name="pedido" rows="3"></textarea>
+        </div>
+        <p class="form-note" data-es="En caso requiera adjuntar anexos, remítalos a soporte@dossierlegal.pe consignando el número de reclamo como asunto." data-en="To attach annexes, send them to soporte@dossierlegal.pe with the complaint number as the subject.">
+          En caso requiera adjuntar anexos, remítalos a soporte@dossierlegal.pe consignando el número de reclamo como asunto.
+        </p>
+        <button type="submit" class="btn-submit" data-es="Enviar Reclamo" data-en="Submit Complaint">Enviar Reclamo</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- jsPDF para generación de PDF en el navegador -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+    /* ===================== IDIOMA ===================== */
+    var currentLang = 'es';
+    function setLang(lang) {
+      currentLang = lang;
+      document.getElementById('langES').classList.toggle('active', lang === 'es');
+      document.getElementById('langEN').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+      document.querySelectorAll('[data-es]').forEach(function(el) {
+        var text = el.getAttribute('data-' + lang);
+        if (!text) return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = text;
+        } else if (text.includes('<')) {
+          el.innerHTML = text;
+        } else {
+          el.textContent = text;
+        }
+      });
+    }
+
+    /* ===================== HAMBURGER ===================== */
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    /* ===================== MODAL ===================== */
+    function openModal(e) { if (e) e.preventDefault(); document.getElementById('modalReclamos').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeModal() { document.getElementById('modalReclamos').classList.remove('open'); document.body.style.overflow = ''; }
+    document.getElementById('modalReclamos').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+
+    /* ===================== FORM LOGIC ===================== */
+    function toggleMenor(radio) { document.getElementById('apoderadoFields').classList.toggle('hidden', radio.value !== 'si'); }
+    function toggleEmpresa(radio) { document.getElementById('empresaFields').classList.toggle('hidden', radio.value !== 'si'); }
+    function selectTipoBien(el, val) {
+      document.querySelectorAll('.tipo-bien-btn').forEach(function(b){ b.classList.remove('selected'); });
+      el.classList.add('selected');
+      document.getElementById('tipoBienInput').value = val;
+    }
+
+    /* ===================== NÚMERO DE RECLAMO ===================== */
+    function generarNumReclamo() {
+      var d = new Date();
+      return 'DL-' + d.getFullYear() + ('0'+(d.getMonth()+1)).slice(-2) + ('0'+d.getDate()).slice(-2) + '-' + Math.floor(1000 + Math.random()*9000);
+    }
+
+    /* ===================== GUARDAR EN LOCAL DB (localStorage) ===================== */
+    function guardarReclamo(datos) {
+      var db = JSON.parse(localStorage.getItem('reclamos_db') || '[]');
+      db.push(datos);
+      localStorage.setItem('reclamos_db', JSON.stringify(db));
+    }
+
+    /* ===================== GENERAR PDF ===================== */
+    function generarPDF(datos) {
+      var { jsPDF } = window.jspdf;
+      var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+      var ml = 20, mr = 190, y = 20, lh = 7;
+
+      // Encabezado
+      doc.setFillColor(19, 18, 59);
+      doc.rect(0, 0, 210, 30, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(14); doc.setFont(undefined, 'bold');
+      doc.text('LIBRO DE RECLAMACIONES VIRTUAL', 105, 13, { align: 'center' });
+      doc.setFontSize(9); doc.setFont(undefined, 'normal');
+      doc.text('Mario Flores Rivera – RUC 10436599281', 105, 21, { align: 'center' });
+      doc.text('soporte@dossierlegal.pe | Lima, Perú', 105, 27, { align: 'center' });
+
+      y = 40;
+      doc.setTextColor(19, 18, 59);
+
+      function seccion(titulo) {
+        doc.setFillColor(245, 247, 250);
+        doc.rect(ml - 2, y - 5, mr - ml + 4, 9, 'F');
+        doc.setFontSize(10); doc.setFont(undefined, 'bold');
+        doc.setTextColor(19, 18, 59);
+        doc.text(titulo, ml, y); y += lh + 2;
+        doc.setFont(undefined, 'normal'); doc.setFontSize(9);
+        doc.setTextColor(85, 94, 114);
+      }
+
+      function campo(label, valor) {
+        if (!valor) return;
+        doc.setFont(undefined, 'bold'); doc.setTextColor(19, 18, 59);
+        doc.text(label + ':', ml, y);
+        doc.setFont(undefined, 'normal'); doc.setTextColor(85, 94, 114);
+        var lines = doc.splitTextToSize(String(valor), mr - ml - 40);
+        doc.text(lines, ml + 42, y);
+        y += Math.max(lh, lines.length * lh);
+      }
+
+      seccion('N.° de Reclamo: ' + datos.num_reclamo + '   Fecha: ' + datos.fecha);
+      campo('Nombres', datos.nombre);
+      campo('Tipo / N.° Doc.', datos.tipo_doc + ' ' + datos.num_doc);
+      campo('E-mail', datos.email);
+      campo('Teléfono', datos.telefono);
+      campo('Domicilio', datos.domicilio);
+      if (datos.empresa_si) {
+        campo('Empresa', datos.razon_social);
+        campo('RUC empresa', datos.num_doc_empresa);
+      }
+      y += 3;
+      seccion('2. BIEN CONTRATADO');
+      campo('Tipo de bien', datos.tipo_bien);
+      campo('Monto (S/)', datos.monto);
+      campo('Descripción', datos.descripcion_bien);
+      y += 3;
+      seccion('3. RECLAMO / QUEJA / SOLICITUD');
+      campo('Tipo', datos.tipo_reclamo);
+      campo('Detalle', datos.detalle);
+      campo('Pedido', datos.pedido);
+      y += 10;
+      doc.setFontSize(8); doc.setTextColor(150);
+      doc.text('Documento generado automáticamente — Dossier Legal © 2026', 105, 287, { align: 'center' });
+
+      return doc;
+    }
+
+    /* ===================== ENVIAR POR EMAIL (mailto) ===================== */
+    function enviarEmail(datos, pdfDoc) {
+      // Descarga el PDF automáticamente
+      pdfDoc.save('Reclamo_' + datos.num_reclamo + '.pdf');
+
+      // Prepara el body del correo con resumen del reclamo
+      var body = encodeURIComponent(
+        'N.° Reclamo: ' + datos.num_reclamo + '\n' +
+        'Fecha: ' + datos.fecha + '\n\n' +
+        'Nombre: ' + datos.nombre + '\n' +
+        'Documento: ' + datos.tipo_doc + ' ' + datos.num_doc + '\n' +
+        'Email: ' + datos.email + '\n' +
+        'Teléfono: ' + datos.telefono + '\n\n' +
+        'Tipo de bien: ' + datos.tipo_bien + '\n' +
+        'Monto (S/): ' + (datos.monto || '—') + '\n' +
+        'Descripción: ' + (datos.descripcion_bien || '—') + '\n\n' +
+        'Tipo reclamo: ' + datos.tipo_reclamo + '\n' +
+        'Detalle: ' + (datos.detalle || '—') + '\n' +
+        'Pedido: ' + (datos.pedido || '—') + '\n\n' +
+        '⚠️ Adjunte el PDF descargado automáticamente a este correo.\n' +
+        'Envíe copia a: soporte@dossierlegal.pe'
+      );
+
+      var subject = encodeURIComponent('Reclamo ' + datos.num_reclamo + ' — Dossier Legal');
+      var destinatario = datos.email || '';
+
+      // Abre cliente de correo con datos prellenados
+      window.location.href = 'mailto:' + destinatario +
+        '?cc=soporte@dossierlegal.pe' +
+        '&subject=' + subject +
+        '&body=' + body;
+    }
+
+    /* ===================== SUBMIT RECLAMO ===================== */
+    function submitReclamo(e) {
+      e.preventDefault();
+      var form = e.target;
+      var fd = new FormData(form);
+      var d = new Date();
+
+      var datos = {
+        num_reclamo:      generarNumReclamo(),
+        fecha:            d.toLocaleDateString('es-PE') + ' ' + d.toLocaleTimeString('es-PE'),
+        nombre:           fd.get('nombre') || '',
+        tipo_doc:         fd.get('tipo_doc') || '',
+        num_doc:          fd.get('num_doc') || '',
+        email:            fd.get('email') || '',
+        telefono:         fd.get('telefono') || '',
+        domicilio:        fd.get('domicilio') || '',
+        empresa_si:       fd.get('empresa') === 'si',
+        razon_social:     fd.get('razon_social') || '',
+        num_doc_empresa:  fd.get('num_doc_empresa') || '',
+        tipo_bien:        fd.get('tipo_bien') || '',
+        monto:            fd.get('monto') || '',
+        descripcion_bien: fd.get('descripcion_bien') || '',
+        tipo_reclamo:     fd.get('tipo_reclamo') || '',
+        detalle:          fd.get('detalle') || '',
+        pedido:           fd.get('pedido') || ''
+      };
+
+      // 1. Guardar en base de datos local
+      guardarReclamo(datos);
+
+      // 2. Generar PDF y descargarlo
+      var pdfDoc = generarPDF(datos);
+
+      // 3. Enviar correo (abre cliente de email con datos prellenados)
+      enviarEmail(datos, pdfDoc);
+
+      // 4. Confirmación visual
+      var btn = form.querySelector('.btn-submit');
+      var originalText = btn.textContent;
+      btn.textContent = '✓ ' + (currentLang === 'es' ? 'Reclamo registrado — revise su correo' : 'Complaint submitted — check your email');
+      btn.style.background = '#25d366';
+      setTimeout(function() {
+        closeModal();
+        form.reset();
+        document.querySelectorAll('.tipo-bien-btn').forEach(function(b){ b.classList.remove('selected'); });
+        document.querySelector('.tipo-bien-btn').classList.add('selected');
+        document.getElementById('tipoBienInput').value = 'Producto';
+        btn.textContent = originalText;
+        btn.style.background = '';
+      }, 3500);
+    }
+  </script>
+
+</body>
+</html>
