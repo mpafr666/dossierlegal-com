@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="Dossier Legal" />
-  <meta name="description" content="Dossier Legal — Abogados en Perú para extranjeros. Servicios legales: poderes notariales, compraventa, constitución de empresas, procesos judiciales, trámites y gestiones ante entidades peruanas." />
-  <meta name="keywords" content="abogados Peru extranjeros, legal services Peru, lawyers Peru foreigners, poderes notariales Peru, compraventa inmuebles Peru, constitucion empresas Peru, procesos judiciales Peru, tramites legales Peru, gestiones legales Peru, consulado Peru, poder notarial Peru, legal Peru, Dossier Legal" />
+  <meta name="description" content="Dossier Legal — English-speaking lawyers in Peru for foreigners. Power of attorney, real estate, company formation, legal proceedings and administrative procedures in Peru." />
+  <meta name="keywords" content="lawyers Peru foreigners, legal services Peru, power of attorney Peru, real estate Peru foreigners, company formation Peru, legal proceedings Peru, English speaking lawyer Peru, expat legal help Peru, notary Peru, buy property Peru, Dossier Legal" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Dossier Legal — Servicios Legales en Perú para Extranjeros" />
-  <meta property="og:description" content="¿Estás en el extranjero y necesitas servicios legales en Perú? Somos abogados especializados. Poderes, compraventa, empresas, procesos judiciales y más." />
+  <meta property="og:title" content="Dossier Legal — Legal Services in Peru for Foreigners" />
+  <meta property="og:description" content="Living abroad and need legal services in Peru? We are specialized English-speaking lawyers. Power of attorney, real estate, company formation, legal proceedings and more." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dossierlegal.com" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://dossierlegal.com/assets/img/hero-centro.jpg" />
+  <link rel="canonical" href="https://dossierlegal.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dossier Legal — Legal Services in Peru for Foreigners" />
+  <meta name="twitter:description" content="English-speaking lawyers in Peru for foreigners. Power of attorney, real estate, company formation, legal proceedings and more." />
+  <meta name="twitter:image" content="https://dossierlegal.com/assets/img/hero-centro.jpg" />
   <title>Dossier Legal — Servicios Legales en Perú</title>
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
@@ -298,8 +306,8 @@
     </ul>
     <div style="display:flex;align-items:center;gap:1rem;">
       <div class="lang-toggle">
-        <span class="lang-opt" id="langEN" onclick="setLang('en')">ENG</span>
-        <span class="lang-opt active" id="langES" onclick="setLang('es')">ESP</span>
+        <span class="lang-opt active" id="langEN" onclick="setLang('en')">ENG</span>
+        <span class="lang-opt" id="langES" onclick="setLang('es')">ESP</span>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menú">
         <span></span><span></span><span></span>
@@ -664,7 +672,8 @@
 
   <script>
     /* ===================== IDIOMA ===================== */
-    var currentLang = 'es';
+    var currentLang = 'en';
+    document.addEventListener('DOMContentLoaded', function() { setLang('en'); });
     function setLang(lang) {
       currentLang = lang;
       document.getElementById('langES').classList.toggle('active', lang === 'es');
