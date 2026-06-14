@@ -582,8 +582,8 @@
         <div class="form-subtitle" data-es="DEL SOLICITANTE" data-en="CLAIMANT">DEL SOLICITANTE</div>
         <div class="form-row">
           <div class="form-group">
-            <label data-es="Tipo de documento" data-en="Document type">Tipo de documento</label>
-            <select name="tipo_doc">
+            <label data-es="Tipo de documento *" data-en="Document type *">Tipo de documento *</label>
+            <select name="tipo_doc" required>
               <option value="">---------</option>
               <option value="CE">CE</option>
               <option value="DNI">DNI</option>
@@ -592,13 +592,13 @@
             </select>
           </div>
           <div class="form-group">
-            <label data-es="Número de documento" data-en="Document number">Número de documento</label>
-            <input type="text" name="num_doc" />
+            <label data-es="Número de documento *" data-en="Document number *">Número de documento *</label>
+            <input type="text" name="num_doc" required />
           </div>
         </div>
         <div class="form-group">
-          <label data-es="Nombres y Apellidos" data-en="Full name">Nombres y Apellidos</label>
-          <input type="text" name="nombre" />
+          <label data-es="Nombres y Apellidos *" data-en="Full name *">Nombres y Apellidos *</label>
+          <input type="text" name="nombre" required />
         </div>
 
         <div class="radio-group">
@@ -644,12 +644,12 @@
         <div class="form-subtitle" data-es="DATOS DE CONTACTO" data-en="CONTACT DATA">DATOS DE CONTACTO</div>
         <div class="form-row">
           <div class="form-group">
-            <label>E-mail</label>
-            <input type="email" name="email" id="emailReclamante" />
+            <label>E-mail *</label>
+            <input type="email" name="email" id="emailReclamante" required />
           </div>
           <div class="form-group">
-            <label data-es="Teléfono / Celular" data-en="Phone / Mobile">Teléfono / Celular</label>
-            <input type="text" name="telefono" />
+            <label data-es="Teléfono / Celular *" data-en="Phone / Mobile *">Teléfono / Celular *</label>
+            <input type="text" name="telefono" required />
           </div>
         </div>
         <div class="form-group">
@@ -659,7 +659,6 @@
         <div class="radio-group">
           <span data-es="¿Dónde le enviamos la respuesta?" data-en="Send response by:">¿Dónde le enviamos la respuesta?</span>
           <label><input type="radio" name="respuesta" value="email" checked> E-mail</label>
-          <label><input type="radio" name="respuesta" value="carta"> <span data-es="Carta en su dirección" data-en="Letter">Carta</span></label>
         </div>
         <p class="form-note" data-es="En caso haya solicitado su respuesta por E-mail, recomendamos revisar su bandeja de entrada así como también la carpeta de Spam." data-en="If you requested a response by email, please check your inbox and Spam folder.">
           En caso haya solicitado su respuesta por E-mail, recomendamos revisar su bandeja de entrada así como también la carpeta de Spam.
@@ -709,8 +708,8 @@
           <label data-es="Pedido" data-en="Request">Pedido</label>
           <textarea name="pedido" rows="3"></textarea>
         </div>
-        <p class="form-note" data-es="En caso requiera adjuntar anexos, remítalos a soporte@dossierlegal.pe consignando el número de reclamo como asunto." data-en="To attach annexes, send them to soporte@dossierlegal.pe with the complaint number as the subject.">
-          En caso requiera adjuntar anexos, remítalos a soporte@dossierlegal.pe consignando el número de reclamo como asunto.
+        <p class="form-note" data-es="En caso requiera adjuntar anexos, remítalos a mflores@dossierlegal.pe consignando el número de reclamo como asunto." data-en="To attach annexes, send them to mflores@dossierlegal.pe with the complaint number as the subject.">
+          En caso requiera adjuntar anexos, remítalos a mflores@dossierlegal.pe consignando el número de reclamo como asunto.
         </p>
         <button type="submit" class="btn-submit" data-es="Enviar Reclamo" data-en="Submit Complaint">Enviar Reclamo</button>
       </form>
@@ -763,8 +762,11 @@
 
     /* ===================== NÚMERO DE RECLAMO ===================== */
     function generarNumReclamo() {
-      var d = new Date();
-      return 'DL-' + d.getFullYear() + ('0'+(d.getMonth()+1)).slice(-2) + ('0'+d.getDate()).slice(-2) + '-' + Math.floor(1000 + Math.random()*9000);
+      var year = new Date().getFullYear();
+      var key = 'reclamo_counter_' + year;
+      var count = parseInt(localStorage.getItem(key) || '0') + 1;
+      localStorage.setItem(key, count);
+      return 'DL-' + year + '-' + String(count).padStart(3, '0');
     }
 
     /* ===================== GUARDAR EN LOCAL DB (localStorage) ===================== */
@@ -788,7 +790,7 @@
       doc.text('LIBRO DE RECLAMACIONES VIRTUAL', 105, 13, { align: 'center' });
       doc.setFontSize(9); doc.setFont(undefined, 'normal');
       doc.text('Mario Flores Rivera – RUC 10436599281', 105, 21, { align: 'center' });
-      doc.text('soporte@dossierlegal.pe | Lima, Perú', 105, 27, { align: 'center' });
+      doc.text('mflores@dossierlegal.pe | Lima, Perú', 105, 27, { align: 'center' });
 
       y = 40;
       doc.setTextColor(19, 18, 59);
@@ -860,15 +862,15 @@
         'Detalle: ' + (datos.detalle || '—') + '\n' +
         'Pedido: ' + (datos.pedido || '—') + '\n\n' +
         '⚠️ Adjunte el PDF descargado automáticamente a este correo.\n' +
-        'Envíe copia a: soporte@dossierlegal.pe'
+        'Envíe copia a: mflores@dossierlegal.pe'
       );
 
       var subject = encodeURIComponent('Reclamo ' + datos.num_reclamo + ' — Dossier Legal');
       var destinatario = datos.email || '';
 
       // Abre cliente de correo con datos prellenados
-      window.location.href = 'mailto:' + destinatario +
-        '?cc=soporte@dossierlegal.pe' +
+      window.location.href = 'mailto:mflores@dossierlegal.pe' +
+        '?cc=' + destinatario +
         '&subject=' + subject +
         '&body=' + body;
     }
