@@ -719,6 +719,10 @@
   <!-- jsPDF para generación de PDF en el navegador -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+  <!-- EmailJS SDK para envío de correos automáticos -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init({ publicKey: '-S0BfaqEfp3KJASBp' });</script>
+
   <script>
     /* ===================== IDIOMA ===================== */
     var currentLang = 'en';
@@ -842,37 +846,35 @@
       return doc;
     }
 
-    /* ===================== ENVIAR POR EMAIL (mailto) ===================== */
+    /* ===================== ENVIAR POR EMAIL (EmailJS) ===================== */
     function enviarEmail(datos, pdfDoc) {
-      // Descarga el PDF automáticamente
+      // 1. Descargar PDF automáticamente en el dispositivo del usuario
       pdfDoc.save('Reclamo_' + datos.num_reclamo + '.pdf');
 
-      // Prepara el body del correo con resumen del reclamo
-      var body = encodeURIComponent(
-        'N.° Reclamo: ' + datos.num_reclamo + '\n' +
-        'Fecha: ' + datos.fecha + '\n\n' +
-        'Nombre: ' + datos.nombre + '\n' +
-        'Documento: ' + datos.tipo_doc + ' ' + datos.num_doc + '\n' +
-        'Email: ' + datos.email + '\n' +
-        'Teléfono: ' + datos.telefono + '\n\n' +
-        'Tipo de bien: ' + datos.tipo_bien + '\n' +
-        'Monto (S/): ' + (datos.monto || '—') + '\n' +
-        'Descripción: ' + (datos.descripcion_bien || '—') + '\n\n' +
-        'Tipo reclamo: ' + datos.tipo_reclamo + '\n' +
-        'Detalle: ' + (datos.detalle || '—') + '\n' +
-        'Pedido: ' + (datos.pedido || '—') + '\n\n' +
-        '⚠️ Adjunte el PDF descargado automáticamente a este correo.\n' +
-        'Envíe copia a: mflores@dossierlegal.pe'
-      );
+      // 2. Parámetros que coinciden con las variables del template EmailJS
+      var templateParams = {
+        num_reclamo:         datos.num_reclamo,
+        fecha_reclamo:       datos.fecha,
+        nombre_reclamante:   datos.nombre,
+        tipo_doc:            datos.tipo_doc,
+        num_doc:             datos.num_doc,
+        email_reclamante:    datos.email,
+        telefono:            datos.telefono,
+        tipo_bien:           datos.tipo_bien || '—',
+        descripcion_bien:    datos.descripcion_bien || '—',
+        monto:               datos.monto ? 'S/ ' + datos.monto : '—',
+        descripcion_reclamo: (datos.tipo_reclamo ? datos.tipo_reclamo + ': ' : '') + (datos.detalle || '—'),
+        pedido_reclamante:   datos.pedido || '—'
+      };
 
-      var subject = encodeURIComponent('Reclamo ' + datos.num_reclamo + ' — Dossier Legal');
-      var destinatario = datos.email || '';
-
-      // Abre cliente de correo con datos prellenados
-      window.location.href = 'mailto:mflores@dossierlegal.pe' +
-        '?cc=' + destinatario +
-        '&subject=' + subject +
-        '&body=' + body;
+      // 3. Enviar vía EmailJS → mflores@dossierlegal.pe + auto-reply al reclamante
+      emailjs.send('service_85x8zii', 'tvoybdd', templateParams)
+        .then(function() {
+          console.log('Correo enviado correctamente a mflores@dossierlegal.pe');
+        })
+        .catch(function(err) {
+          console.error('Error al enviar correo EmailJS:', err);
+        });
     }
 
     /* ===================== SUBMIT RECLAMO ===================== */
@@ -914,7 +916,7 @@
       // 4. Confirmación visual
       var btn = form.querySelector('.btn-submit');
       var originalText = btn.textContent;
-      btn.textContent = '✓ ' + (currentLang === 'es' ? 'Reclamo registrado — revise su correo' : 'Complaint submitted — check your email');
+      btn.textContent = '✓ ' + (currentLang === 'es' ? 'Reclamo registrado — recibirá confirmación por correo' : 'Complaint submitted — confirmation email sent');
       btn.style.background = '#25d366';
       setTimeout(function() {
         closeModal();
