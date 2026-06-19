@@ -293,6 +293,10 @@
     .footer__links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .footer__links a { font-size: 0.85rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
     .footer__links a:hover { color: var(--cyan); }
+    .footer__social { display: flex; align-items: center; gap: 0.9rem; }
+    .footer__social a { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.75); transition: background 0.2s, color 0.2s, transform 0.2s; }
+    .footer__social a:hover { background: var(--cyan); color: #0b0b0f; transform: translateY(-2px); }
+    .footer__social svg { width: 17px; height: 17px; fill: currentColor; }
     .footer__copy { font-size: 0.8rem; text-align: center; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.1); max-width: 1100px; margin-left: auto; margin-right: auto; }
 
     /* MODAL */
@@ -551,6 +555,11 @@
         <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
         <li><a href="#" onclick="openModal(event)" data-es="Libro de Reclamaciones" data-en="Complaints Book">Libro de Reclamaciones</a></li>
       </ul>
+      <div class="footer__social">
+        <a href="https://www.tiktok.com/@dossierlegal" target="_blank" rel="noopener noreferrer" aria-label="TikTok - Dossier Legal">
+          <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+        </a>
+      </div>
     </div>
     <p class="footer__copy" data-es="© 2026 Dossier Legal. Todos los derechos reservados. Lima, Perú." data-en="© 2026 Dossier Legal. All rights reserved. Lima, Peru.">
       © 2026 Dossier Legal. Todos los derechos reservados. Lima, Perú.
